@@ -1,0 +1,18 @@
+query getCardDatas {
+	cardDatas {
+		id
+		menuIcon: menu_icon
+		menuName: menu_name
+		cardInfo: card_info {
+			id
+			cardIcon: card_icon
+			cardHref: card_href
+			cardTitle: card_title
+			cardDescription: card_description
+		}
+	}
+}
+
+query getClientCardDatas {
+	cardDatas @client
+}
