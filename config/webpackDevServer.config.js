@@ -81,7 +81,26 @@ module.exports = function(proxy, allowedHost) {
       disableDotRule: true,
     },
     public: allowedHost,
-    proxy,
+    proxy: {
+      '/graphql': {
+        changeOrigin: true,
+        target: 'http://nav.wwwien.top:3001',
+      },
+      '/api': {
+        changeOrigin: true,
+        target: 'http://localhost:3001',
+        pathRewrite: {
+          '^/api': '',
+        },
+      },
+      '/img': {
+        changeOrigin: true,
+        target: 'http://nav.wwwien.top:4002',
+        pathRewrite: {
+          '^/img': '',
+        },
+      },
+    },
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons
